@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            //문제1) 버튼을 누르면 input태그에 입력된 값 출력하기
+            //button의 텍스트로 저장
+            //클릭 이벤트 발생시 동작
+            var flag = true;
+            $("button").click(function(){
+                // var text_ = $("input[name=a]").val();
+                // console.log(text_);
+                // $(this).text(text_);
+
+                //반대로 버튼을 눌렀을때 버튼태그의 값을 인풋태그에 넣기
+                // $("input[name=a]").val($("button").text());
+
+                //버튼을 누르면 a= b값 b= a값 출력
+                //     var u ='';
+                //     var v ='';
+                // if (flag) {
+                //     u = $("input[name=b]").val();
+                //     $("input[name=a]").val(u);
+                //     $("input[name=b]").val("");
+                // } else {
+                //     v = $("input[name=a]").val();
+                //     $("input[name=b]").val(v);
+                //     $("input[name=a]").val("");
+                // }
+                // flag = !flag;
+                // console.log(flag)
+
+
+                
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <input type="text" name="a" />
+        <input type="text" name="b" />
+    </div>
+    <button>눌러</button>
+</body>
+</html>
