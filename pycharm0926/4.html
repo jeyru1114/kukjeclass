@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        color_list=[]
+        for(var i=0;i<10;i++) color_list.push(''+i)
+        color_list.push('a')
+        color_list.push('b')
+        color_list.push('c')
+        color_list.push('d')
+        color_list.push('e')
+        color_list.push('f')
+        color=()=>{
+            var str1="#";
+            for (var i=0;i<10;i++){
+                var idx = parseInt(Math.random() * color_list.length);
+                str1 += color_list[idx];
+            }
+            console.log(str1);
+            return str1;
+        };
+        $(document).ready(function(){
+            list = ["사랑","믿음","증오","패기","권리","망상"];
+            $(list).each(function (i,j){
+                $("#b").append("<option>"+ j +"</option>");
+        });
+        $("#b").change(function(){
+            console.log($(this).val());
+            $(this).find(":selected").css("color",color());
+        });
+        setInterval(() => {
+            color();
+        }, 1000);
+    });
+    </script>
+</head>
+<body>
+    <select name="" id="b"></select>
+</body>
+</html>

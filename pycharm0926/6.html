@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        var cnt = 0;
+        var color_list=[]
+        for(var i=0;i<10;i++) {
+            color_list.push(''+i)
+        }
+        color_list.push('a')
+        color_list.push('b')
+        color_list.push('c')
+        color_list.push('d')
+        color_list.push('e')
+        color_list.push('f')
+        color = () => {
+            var str1="#"
+            for (var i=0;i<6;i++){
+                var idx = parseInt(Math.random() * color_list.length);
+                str1 += color_list[idx];
+            }
+            console.log(str1);
+            return str1;
+        }
+        $(document).ready(function(){
+            var buttons = $("button");
+            $("div").each(function(idx,data){
+                $(data).click(function(){
+                    console.log(idx);
+                    buttons.eq(idx).css("color",color())
+                });
+            });
+    });
+    </script>
+</head>
+<body>
+    <div>홍길동</div>
+    <div>홍말자</div>
+    <div>김개똥</div>
+    <div>국제아카데미</div>
+    <button>0</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+</body>
+</html>

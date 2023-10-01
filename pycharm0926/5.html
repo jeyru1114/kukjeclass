@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        var cnt = 0;
+        $(document).ready(function(){
+            list = ["사랑","믿음","증오","패기","권리","망상"];
+            $(list).each(function (i,j){
+                console.log("index:",i,"data:",j);
+            });
+        $("div").each(function (i,j){
+            console.log($(this).text());
+            $(this).click(function(){
+                console.log($(this).text());
+            });
+    });
+    setInterval(()=>{
+        cnt++;
+        if (cnt ==list.length) cnt = 0;
+        console.log(cnt);
+    }, 1000);
+    $("button").click(function(){
+        console.log("버튼이 눌림",cnt);
+        $(this).text(cnt);
+    });
+    });
+    </script>
+</head>
+<body>
+    <button>cnt 값 확인</button>
+    <select name="" id="b"></select>
+    <div>홍길동</div>
+    <div>홍말자</div>
+    <div>김개똥</div>
+    <div>국제아카데미</div>
+</body>
+</html>

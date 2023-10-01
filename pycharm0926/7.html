@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        var cnt = 0;
+        $(document).ready(function(){
+            var divs = $("div")
+            divs.eq(0).click(function(){
+                console.log($(this).text());
+            });
+            divs.eq(1).click(function(){
+                console.log($(this).text());
+            });
+            divs.eq(2).click(function(){
+                console.log($(this).text());
+            });
+            divs.eq(3).click(function(){
+                console.log($(this).text());
+            });
+    });
+    </script>
+</head>
+<body>
+    <div>홍길동1</div>
+    <div>홍길동2</div>
+    <div>홍길동3</div>
+    <div>홍길동4</div>
+
+</body>
+</html>

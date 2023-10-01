@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            // $("p").eq(0).text("사랑"); // eq는 순서(?)
+            // $("p").eq(1).text("믿음");
+            $("p").each(function(i,j){
+                $(j).text(list[i]);
+                console.log(i,j)
+            })
+        });
+    </script>
+</head>
+<body>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+</body>
+</html>
