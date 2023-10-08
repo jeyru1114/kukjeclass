@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        var API_KEY = '39784630-3f4e20c6522d549be7592720a';
+        var URL = 
+            "https://pixabay.com/api/?key="+
+            API_KEY+
+            "&q="+
+            encodeURIComponent('dog');
+        $.getJSON(URL, function(v){ //getJSON (첫번째:요청URL), 두번째는 요청되는 URL에서
+            //성공적으로 이상없이 데이터를 처리하면 호출되는 함수(callback 함수)
+            //성공적으로 호출되면 제공되는 데이터는 두번재 함수의 파라미터(v)로 전달됨
+            console.log(v.hits); // v가 객체이고 그 객체의 key가 hits이고 그것의 value는 배열(data)
+            datas = v.hits;
+            for (var i of datas){ // 배열에서 하나씩 꺼내면 i(객체)이고 객체이므로 key(webformatURL)
+                //를 통해 value는 pixabay에서 제공하는 image url임
+                console.log(i.webformatURL);
+            }
+            // var str1 = "";
+            //     $.each(v.hits, function(i, hit){ 
+            //     console.log(hit.webformatURL); 
+            //     v = hit.webformatURL;
+            //     str1 += "<img src='" + v + "' alt='" + hit.tags + "'/>";
+            // });
+            // $("#out").append(str1);
+        });
+    </script>
+</head>
+<body>
+    <div id = "out"></div>
+</body>
+</html>

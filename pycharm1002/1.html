@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            var fixabay_data = {
+                image : ['a.jpg','b.jpg','c.jpg'],
+                total : [10,20,30],
+            };
+
+            const s_data = (v, i, f) => {
+                return i * 10 + v[i] + f(i);
+            };
+            // const f_data = (i) => i * 5;
+            var cnt = 0;
+            const success_f = (e) => { 
+                //성공하면 호출되는 함수
+                console.log("성공");
+                // var str1="";
+                if(cnt == 3) cnt=0;
+                var result = s_data(fixabay_data.total, cnt++, (i) => i*100); //3번째 인자가 fixabay에서 성공하면 호출된다고 가정함
+                //fixabay_data 에서 데이터 제공함
+                //첫번째 인자는 사용자가 fixabay에 image를 달라고할지 total를 달라고 할지를 정함
+                console.log(result);
+            };
+            // const fail_f = (e) => {
+            //     console.log("실패");
+            // };
+            setInterval(success_f,1000); // 1초마다
+            // setInterval(fail_f,10000);
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

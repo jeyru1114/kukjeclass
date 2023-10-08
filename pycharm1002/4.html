@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+    var fn = ["x**3+6*x" , "x**2+3*x+5", "2*x**2+3*x", "6*x**2+3*x-7","6*x**3+7*x**2+4*x+9"]
+    var fn_input = [];
+    $(document).ready(function (){
+        $("button").click(function () {
+            var str2=''
+            $.each(fn,function(idx,r){
+                //$("div input").eq(idx).val(r)
+                $("#input").append("<input value='" + r + "'/>");
+            });
+            $("div input").each(function(idx, qq){
+                console.log($(qq).val());
+                fn_input.push($(qq).val());
+            });
+            console.log(fn_input);
+            $.ajax({
+                url:'/q',
+                method:'post',
+                contentType:'application/json',
+                data:JSON.stringify({fn, arg:17}),
+                //"x**3+6*x" 함수의 x값에 7을 대입한 결과, "x**2+3*x+5" 결과의 총합을 반환
+                success : function(v){ 
+                    console.log(v);
+                },
+                error : function(e){
+                    console.log("실패",e);
+                },
+            })
+        });
+    });
+</script>
+</head>
+<body>
+안녕하슈?
+<div id="input"></div>
+<button>전송</button>
+</body>
+</html>
