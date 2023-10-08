@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("[type=submit]").click(function (e) {
+          e.preventDefault() //추가 (form 태그와 충돌하므로)
+          var f = $("[name=f]").val();
+          var lower = $("[name=lower]").val();
+          var upper = $("[name=upper]").val();
+          $.ajax({
+            url: "/a",
+            method: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({
+              f,
+              lower,
+              upper,
+            }),
+            success: function (response) {
+              $("#input").text(response.result)
+            },
+            error: function (e) {
+              console.log(e);
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    안녕하세요?
+    <div id="input"></div>
+   <form action="" method="POST">
+        <div>
+          <label for="">수식</label>
+          <input type="text" name="f" />
+        </div>
+        <div>
+          <label for="">좌한</label>
+          <input type="text" name="lower" />
+        </div>
+        <div>
+          <label for="">우한</label>
+          <input type="text" name="upper" />
+        </div>
+        <input type="submit" value="전송" />
+      </form>
+  </body>
+</html>

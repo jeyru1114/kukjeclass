@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+      $(document).ready(function () {
+        var y_ =0
+        var z_=0
+        $("#der").click(function (e) {
+          e.preventDefault();
+          console.log("미분 버튼이 눌렸어요");
+          var f = $("[name=expression]").val();
+          var x_variable = $("#x_variable").val();
+          var x_value = $("#x_value").val();
+          var y_variable = $("#y_variable").val();
+          var y_value = $("#y_value").val();
+          var z_variable = $("#z_variable").val();
+          var z_value = $("#z_value").val();
+          console.log(
+            f,
+            x_value,
+            x_variable,
+            y_value,
+            y_variable,
+            z_value,
+            z_variable
+          );
+          $.ajax({
+            url: "/calc",
+            method: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({
+              f,
+              x_value,
+              x_variable,
+              y_value,
+              y_variable,
+              z_value,
+              z_variable,
+            }),
+            success: function (response) {
+              console.log(response.result);
+              var str1 = "";
+              for (var a of response.result) {
+                for (var b of a) {
+                  str1 += "<p>" + b + "</p>";
+                }
+              }
+              $("#result").append(str1);
+            },
+            error: function (e) {
+              console.log(e);
+            },
+          });
+        });
+        $("#a").change(function (e) {
+          e.preventDefault();
+          console.log("range 이벤트가 발생했어요")
+          y_ = $("[name=y_fixed_value]").val();
+          console.log(y_)
+        });
+        $("#b").change(function (e) {
+          e.preventDefault();
+          console.log("range 이벤트가 발생했어요")
+          z_ = $("[name=z_fixed_value]").val();
+          console.log(z_)
+        });
+          
+        $("#integral").click(function (e) {
+          e.preventDefault();
+          console.log("적분 버튼이 눌렸어요");
+          var f = $("[name=expression]").val();
+          var upper = $("#upper").val();
+          var lower = $("#lower").val();
+
+          console.log(f, upper, lower);
+          $.ajax({
+            url: "/integral",
+            method: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({
+              f,
+              upper,
+              lower,
+              y_,
+              z_,
+
+
+            }),
+            success: function (response) {
+              console.log(response.result);
+              $("#result_int").append(response.result);
+            },
+            error: function (e) {
+              console.log(e);
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <span class="math-tex" id="result"></span>
+    <form action="" method="POST">
+      <div>
+        <label for="expression">수식</label>
+        <input type="text" name="expression" id="expression" />
+      </div>
+      <div>
+        <label for="x">x</label>
+        <input type="text" name="x" id="x_variable" value="x" />
+        <input type="text" name="x_number" id="x_value" />
+      </div>
+      <div>
+        <label for="y">y</label>
+        <input type="text" name="y" id="y_variable" value="y" />
+        <input type="text" name="y_number" id="y_value" />
+      </div>
+      <div>
+        <label for="z">z</label>
+        <input type="text" name="z" id="z_variable" value="z" />
+        <input type="text" name="z_number" id="z_value" />
+      </div>
+      <input type="submit" value="미분" id="der" />
+    </form>
+    <form action="" method="POST">
+      <div>
+        <label for="x">적분 구간</label>
+        <input type="text" id="lower" />
+        <input type="text" id="upper" />
+      </div>
+      
+      <div>
+        <input type="range" name="y_fixed_value" id="a"/>
+        <input type="range" name="z_fixed_value" id="b"/>
+      </div>
+      <input type="submit" value="적분" id="integral" />
+    </form>
+    <!-- 수식은 미분 form 태그의 수식을 사용함  -->
+  </body>
+</html>
